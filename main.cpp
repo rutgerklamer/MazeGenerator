@@ -26,6 +26,7 @@ Maze* maze;
 
 int main(int argc, char* argv[])
 {
+  srand(time(NULL));
   int difficulty = 10;
   int width = 10 * difficulty;
   int height = 10 * difficulty;
@@ -36,6 +37,7 @@ int main(int argc, char* argv[])
   color* solvedMaze = new color[n];
 
   maze = new Maze(width, height);
+  if (maze->totalPinks < 10) { delete maze; srand(3289 * time(NULL)); maze = new Maze(width, height); }
   std::cout << "Hello world" << "\n";
 
   for (int x = 0; x < width; x++)

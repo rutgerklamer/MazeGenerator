@@ -2,7 +2,6 @@
 
 Maze::Maze(int w, int h)
 {
-    srand(time(NULL));
     std::cout << "Maze initialized" << std::endl;
     resolution.setX(w);
     resolution.setY(h);
@@ -107,10 +106,14 @@ Maze::Maze(int w, int h)
              cells[x][y]->solvedColor->setG(1);
              cells[x][y]->solvedColor->setB(1);
            }
+           if (cells[x][y]->solvedColor->getR() == 1 && cells[x][y]->solvedColor->getG() == 0 && cells[x][y]->solvedColor->getB() == 1)
+           {
+             totalPinks++;
+           }
          }
-
       }
   }
+
 }
 
 Maze::~Maze()
@@ -187,8 +190,6 @@ bool Maze::GenerateSolvedMaze()
     nextMove.setX(-1);
     nextMove.setY(0);
   }
-  lol++;
-  std::cout << lol << std::endl;
   if (direction == N && walkerPos.getY()-1 >= 0
    || direction == S && walkerPos.getY()+1 < resolution.getY()
    || direction == E && walkerPos.getX()+1 < resolution.getX()
