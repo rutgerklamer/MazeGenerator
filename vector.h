@@ -14,6 +14,9 @@ class Vector
         float getX(){ return x; };
         float getY(){ return y; };
         float getZ(){ return z; };
+        void setX(int r) { x = r; };
+        void setY(int t) { y = t; };
+        void setZ(int y) { z = y; };
 
         float magnitude() {
           return sqrt((x*x) + (y*y) + (z*z));

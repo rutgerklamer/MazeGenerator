@@ -10,12 +10,9 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "vector.h"
-#include "ray.h"
-#include "camera.h"
 #include "color.h"
-#include "light.h"
-
+#include "vector.h"
+#include "maze.h"
 struct color {
   float r;
   float g;
@@ -25,52 +22,32 @@ struct color {
 void savebmp(const char* filename, int w, int h, int dpi, color* data);
 
 int thisone;
+Maze* maze;
 
 int main(int argc, char* argv[])
 {
   int dpi = 72;
-  int width = 640;
-  int height = 480;
+  int width = 12000;
+  int height = 12000;
   int n = width*height;
-  color *pixels = new color[n];
-
-  Vector X(1,0,0);
-  Vector Y(0,1,0);
-  Vector Z(0,0,1);
-
-  Vector look_at(0,0,0);
-  Vector camPos (3,1.5, -4);
-  Vector diff_btw(camPos.getX() - look_at.getX(), camPos.getY() - look_at.getY(), camPos.getZ() - look_at.getZ());
-
-  Vector camDir = diff_btw.invert().normalize();
-  Vector camRight = Y.cross(camDir).normalize();
-  Vector camDown = camRight.cross(camDir);
-  Camera m_cam(camPos, camDir, camRight, camDown);
+  color* pixels = new color[n];
 
   Color m_white_light(1,1,1,0);
   Color m_pretty_green(0.5,1.0,0.5,0.3);
   Color m_gray(0.5,0.5,0.5,0);
   Color m_black(0,0,0,0);
 
-  Vector light_position(-7,10,-10);
-  Light m_main_light(light_position, m_white_light);
+  maze = new Maze(width, height);
+  std::cout << "asdasdsadaMasdasdasdasdze initializdasdasded" << std::endl;
 
   for (int x = 0; x < width; x++)
   {
     for (int y = 0; y < height; y++)
     {
       thisone = y*width+x;
-      std::cout << x % 2;
-      if (x % 2 == 0 || y % 2 == 0)
-      {
-        pixels[thisone].r = 1 - x / width;
-        pixels[thisone].g = 1 - x / width;
-        pixels[thisone].b = 1 - x / width;
-      } else {
-        pixels[thisone].r = 0;
-        pixels[thisone].g = 0;
-        pixels[thisone].b = 0;
-      }
+      pixels[thisone].r = maze->getPixel(x,y)->getR();
+      pixels[thisone].g = maze->getPixel(x,y)->getG();
+      pixels[thisone].b = maze->getPixel(x,y)->getB();
     }
   }
   savebmp("render.bmp", width, height, dpi, pixels);
