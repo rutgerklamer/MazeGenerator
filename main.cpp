@@ -26,32 +26,42 @@ Maze* maze;
 
 int main(int argc, char* argv[])
 {
+  int difficulty = 10;
+  int width = 10 * difficulty;
+  int height = 10 * difficulty;
   int dpi = 72;
-  int width = 12000;
-  int height = 12000;
-  int n = width*height;
-  color* pixels = new color[n];
 
-  Color m_white_light(1,1,1,0);
-  Color m_pretty_green(0.5,1.0,0.5,0.3);
-  Color m_gray(0.5,0.5,0.5,0);
-  Color m_black(0,0,0,0);
+  int n = width*height;
+  color* randomMaze = new color[n];
+  color* solvedMaze = new color[n];
 
   maze = new Maze(width, height);
-  std::cout << "asdasdsadaMasdasdasdasdze initializdasdasded" << std::endl;
+  std::cout << "Hello world" << "\n";
 
   for (int x = 0; x < width; x++)
   {
     for (int y = 0; y < height; y++)
     {
       thisone = y*width+x;
-      pixels[thisone].r = maze->getPixel(x,y)->getR();
-      pixels[thisone].g = maze->getPixel(x,y)->getG();
-      pixels[thisone].b = maze->getPixel(x,y)->getB();
+      randomMaze[thisone].r = maze->getPixel(x,y)->getR();
+      randomMaze[thisone].g = maze->getPixel(x,y)->getG();
+      randomMaze[thisone].b = maze->getPixel(x,y)->getB();
     }
   }
-  savebmp("render.bmp", width, height, dpi, pixels);
+  for (int x = 0; x < width; x++)
+  {
+    for (int y = 0; y < height; y++)
+    {
+      thisone = y*width+x;
+      solvedMaze[thisone].r = maze->getPixelSolved(x,y)->getR();
+      solvedMaze[thisone].g = maze->getPixelSolved(x,y)->getG();
+      solvedMaze[thisone].b = maze->getPixelSolved(x,y)->getB();
+    }
+  }
+  savebmp("randomMaze.bmp", width, height, dpi, randomMaze);
+  savebmp("solvedMaze.bmp", width, height, dpi, solvedMaze);
   std::cout << "Hello world" << "\n";
+  delete maze;
   return 0;
 }
 

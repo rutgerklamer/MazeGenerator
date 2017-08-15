@@ -11,8 +11,10 @@ class Maze
     public:
         Maze(int w, int h);
         ~Maze();
-        bool GenerateMazeHard();
+        bool GenerateMaze();
+        bool GenerateSolvedMaze();
         Color* getPixel(int x, int y);
+        Color* getPixelSolved(int x, int y);
         enum Dir
         {
           N, W ,S, E
@@ -24,6 +26,7 @@ class Maze
         };
         struct Cell {
           Color* color;
+          Color* solvedColor;
           Vector position;
           bool visited = false;
         };

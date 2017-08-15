@@ -53,3 +53,34 @@ class Vector
 };
 
 #endif // VECTOR_H
+
+
+// 
+// if (walkerPos.getX() + 1 < resolution.getX()
+//  || walkerPos.getY() + 1 < resolution.getY()
+//  || walkerPos.getY() - 1 >= 0
+//  || walkerPos.getX() - 1 >= 0)
+//  {
+//    int visitedNeighbourBacktrackCount;
+//    if (cells[walkerPos.getX()+1][walkerPos.getY()]->solvedColor->getG() == 0)
+//    {
+//      visitedNeighbourBacktrackCount++;
+//    }
+//    if (cells[walkerPos.getX()-1][walkerPos.getY()]->solvedColor->getG() == 0)
+//    {
+//      visitedNeighbourBacktrackCount++;
+//    }
+//    if (cells[walkerPos.getX()][walkerPos.getY()+1]->solvedColor->getG() == 0)
+//    {
+//      visitedNeighbourBacktrackCount++;
+//    }
+//    if (cells[walkerPos.getX()][walkerPos.getY()-1]->solvedColor->getG() == 0)
+//    {
+//      visitedNeighbourBacktrackCount++;
+//    }
+//    if (visitedNeighbourBacktrackCount < 2) {
+//      visitedStack[visitedStack.size() - 1]->solvedColor->setR(1);
+//      visitedStack[visitedStack.size() - 1]->solvedColor->setG(1);
+//      visitedStack[visitedStack.size() - 1]->solvedColor->setB(1);
+//    }
+//  }
