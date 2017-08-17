@@ -9,7 +9,6 @@ class Color
         float r,g,b,s;
         Color();
         Color(float e, float h, float t, float y);
-        virtual ~Color();
         float getR() {return r;}
         float getG() {return g;}
         float getB() {return b;}

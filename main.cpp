@@ -47,9 +47,9 @@ int main(int argc, char* argv[])
     for (int y = 0; y < height; y++)
     {
       thisone = y*width+x;
-      randomMaze[thisone].r = maze->getPixel(x,y)->getR();
-      randomMaze[thisone].g = maze->getPixel(x,y)->getG();
-      randomMaze[thisone].b = maze->getPixel(x,y)->getB();
+      randomMaze[thisone].r = maze->getPixel(x,y).getR();
+      randomMaze[thisone].g = maze->getPixel(x,y).getG();
+      randomMaze[thisone].b = maze->getPixel(x,y).getB();
     }
   }
   for (int x = 0; x < width; x++)
@@ -57,9 +57,9 @@ int main(int argc, char* argv[])
     for (int y = 0; y < height; y++)
     {
       thisone = y*width+x;
-      solvedMaze[thisone].r = maze->getPixelSolved(x,y)->getR();
-      solvedMaze[thisone].g = maze->getPixelSolved(x,y)->getG();
-      solvedMaze[thisone].b = maze->getPixelSolved(x,y)->getB();
+      solvedMaze[thisone].r = maze->getPixelSolved(x,y).getR();
+      solvedMaze[thisone].g = maze->getPixelSolved(x,y).getG();
+      solvedMaze[thisone].b = maze->getPixelSolved(x,y).getB();
     }
   }
   savebmp("randomMaze.bmp", width, height, dpi, randomMaze);

@@ -15,8 +15,3 @@ Color::Color(float e, float h, float t, float y)
     b = t;
     s = y;
 }
-
-Color::~Color()
-{
-
-}

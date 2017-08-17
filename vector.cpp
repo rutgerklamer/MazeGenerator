@@ -13,8 +13,3 @@ Vector::Vector(float i, float j, float k)
     y = j;
     z = k;
 }
-
-Vector::~Vector()
-{
-
-}
