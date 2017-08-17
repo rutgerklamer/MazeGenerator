@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <iostream>
-#include "stdlib.h"
 #include "vector.h"
 #include "color.h"
 class Maze
@@ -13,8 +12,8 @@ class Maze
         ~Maze();
         bool GenerateMaze();
         bool GenerateSolvedMaze();
-        Color* getPixel(int x, int y);
-        Color* getPixelSolved(int x, int y);
+        Color getPixel(int x, int y);
+        Color getPixelSolved(int x, int y);
         enum Dir
         {
           N, W ,S, E
@@ -25,18 +24,18 @@ class Maze
           EASY, NORMAL, HARD
         };
         struct Cell {
-          Color* color;
-          Color* solvedColor;
+          Color color;
+          Color solvedColor;
           Vector position;
           bool visited = false;
         };
-        std::vector<std::vector<Cell*>> cells;
+        std::vector<std::vector<Cell>> cells;
         std::vector<Cell*> visitedStack;
         Vector walkerPos;
         Vector start;
         Vector end;
         Vector nextMove;
-        int lol;
+        int totalPinks;
         Vector resolution;
 };
 
