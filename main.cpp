@@ -7,13 +7,8 @@
 #include "color.h"
 #include "vector.h"
 #include "maze.h"
-struct color {
-  float r;
-  float g;
-  float b;
-};
 
-void savebmp(const char* filename, int w, int h, int dpi, color* data);
+void savebmp(const char* filename, int w, int h, int dpi, Color* data);
 
 int thisone;
 Maze* maze;
@@ -27,8 +22,8 @@ int main(int argc, char* argv[])
   int dpi = 72;
 
   int n = width*height;
-  color* randomMaze = new color[n];
-  color* solvedMaze = new color[n];
+  Color* randomMaze = new Color[n];
+  Color* solvedMaze = new Color[n];
 
   maze = new Maze(width, height);
   while (maze->totalPinks < 10) {
@@ -61,7 +56,7 @@ int main(int argc, char* argv[])
   return 0;
 }
 
-void savebmp(const char* filename, int w, int h, int dpi, color* data)
+void savebmp(const char* filename, int w, int h, int dpi, Color* data)
 {
   FILE* f;
   int k = w*h;
@@ -112,7 +107,7 @@ void savebmp(const char* filename, int w, int h, int dpi, color* data)
 
   for (int i = 0; i < k; i++)
   {
-    color rgb = data[i];
+    Color rgb = data[i];
 
     float red = (data[i].r)*255;
     float green = (data[i].g)*255;
