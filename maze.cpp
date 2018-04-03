@@ -2,7 +2,7 @@
 
 Maze::Maze(int w, int h)
 {
-    std::cout << "Maze initialized" << std::endl;
+	totalPinks = 9;
     resolution.setX(w);
     resolution.setY(h);
 
@@ -32,15 +32,14 @@ Maze::Maze(int w, int h)
 
     int x = (resolution.getX()) / 2 - 1;
     int y = (resolution.getY()) / 2 - 1;
-    std::cout << x << "      " << y << std::endl;
     walkerPos = Vector(x,y,0);
     end = Vector(x,y,0);
     cells[x][y].visited = true;
     visitedStack.push_back(&cells[x][y]);
-
-    while (GenerateMaze()){}
+	while(GenerateMaze());
     while (true)
     {
+
       float X = rand() % (int)(resolution.getX()-1);
       float Y = rand() % (int)(resolution.getY()-1);
       if (cells[X][Y].color.getR() == 1)
@@ -54,7 +53,7 @@ Maze::Maze(int w, int h)
     }
 
     for (unsigned int x = 0; x < resolution.getX()-1; x++)
-    {
+	{
       for (unsigned int y = 0; y < resolution.getY()-1; y++)
       {
         cells[x][y].solvedColor.setR(cells[x][y].color.getR());
@@ -65,12 +64,12 @@ Maze::Maze(int w, int h)
     }
     walkerPos.setX(start.getX());
     walkerPos.setY(start.getY());
-    std::cout << " X ( " << walkerPos.getX() << " ) Y ( " << walkerPos.getY() << " )" << std::endl;
     cells[walkerPos.getX()][walkerPos.getY()].visited = true;
     visitedStack.push_back(&cells[walkerPos.getX()][walkerPos.getY()]);
     cells[end.getX()][end.getY()].color.setR(1);
     cells[end.getX()][end.getY()].color.setG(0);
     cells[end.getX()][end.getY()].color.setB(0);
+
     while (GenerateSolvedMaze()){}
     for (int x = 0; x < resolution.getX(); x++)
     {
@@ -90,7 +89,6 @@ Maze::Maze(int w, int h)
            {
              visitedNeighbourBacktrackCount++;
            }
-           std::cout << x << "   " << y << std::endl;
            if (cells[x][y+1].solvedColor.getG() == 0 && cells[x][y+1].solvedColor.getR() == 1)
            {
              visitedNeighbourBacktrackCount++;
@@ -111,7 +109,6 @@ Maze::Maze(int w, int h)
          }
       }
   }
-
 }
 
 Maze::~Maze()
