@@ -1,13 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <string>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <limits>
-#include <stdlib.h>
-#include <stdio.h>
 #include <time.h>
 
 #include "color.h"
@@ -40,7 +34,6 @@ int main(int argc, char* argv[])
   while (maze->totalPinks < 10) {
     delete maze; srand(3289 * time(NULL)); maze = new Maze(width, height);
   }
-  std::cout << "Hello world" << "\n";
 
   for (int x = 0; x < width; x++)
   {
@@ -64,7 +57,6 @@ int main(int argc, char* argv[])
   }
   savebmp("randomMaze.bmp", width, height, dpi, randomMaze);
   savebmp("solvedMaze.bmp", width, height, dpi, solvedMaze);
-  std::cout << "Hello world" << "\n";
   delete maze;
   return 0;
 }
